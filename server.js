@@ -120,7 +120,8 @@ app.get("/dashboard", LoginMiddleware, async (req, res) => {
 app.delete('/delete/:id', async(req,res)=>{
   try {
     await ContactSchema.findByIdAndDelete(req.params.id)
-    return res.status(200).send("record Deleted")
+    let data = await ContactSchema.find()
+    res.send(data)
   } catch (error) {
     console.log(error);
     return res.status(500).send("eroor")
