@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const LoginMiddleware = require("./LoginMiddleware");
 const ContactSchema = require("./ContactSchema");
 const app = express();
-
+const port = process.env.PORT || 5001
 mongoose
   .connect(
     "mongodb+srv://admin:admin@cluster0.nkarxtv.mongodb.net/?retryWrites=true&w=majority",
@@ -21,7 +21,7 @@ mongoose
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
-app.get("/get", (req, res) => {
+app.get("/", (req, res) => {
   res.send("server Working");
 });
 
@@ -127,6 +127,6 @@ app.delete('/delete/:id', async(req,res)=>{
   }
 })
 
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log("Server Running On Port 5000");
 });
